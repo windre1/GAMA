@@ -1,0 +1,43 @@
+# GAMA — Google Account Manager & Automation — dependency runtime
+# Install: pip install -r requirements.txt
+
+Flask==3.1.3
+DrissionPage==4.1.1.2      # otomasi Chrome (upload & riset)
+httpx==0.28.1              # AI caption / scraper
+requests==2.33.1           # AI fallback & util
+pywebview==6.2.1           # mode desktop (opsional; fallback ke browser)
+cryptography               # verifikasi lisensi offline (tab Lisensi, Ed25519)
+
+# Tab Chat — klien WhatsApp multi-sesi (whatsmeow via neonize)
+neonize==0.4.3.post0
+segno==1.6.6               # render QR login WhatsApp jadi gambar
+
+# Tab Chat — Scrape member & Blast Telegram (akun user, MTProto)
+telethon==1.44.0
+
+# Upload YouTube via YouTube Data API resmi (youtube_oauth.py)
+google-auth==2.49.1
+google-auth-oauthlib==1.4.0
+google-api-python-client==2.193.0
+
+# Upload YouTube (yt_bridge.py) & TikTok (tiktok_bridge.py) — engine-nya
+# dibundel sendiri di engines/yt_uploader/ & engines/tekotok/ (lihat komentar
+# di _resolve_engine_dir main.py); peewee dipakai engine YT Uploader utk model Account.
+peewee==4.0.4
+
+# Fitur opsional — dipakai beberapa fitur, sudah ada try/except fallback di
+# kode tapi WAJIB terpasang di lingkungan build (venv PyInstaller) supaya
+# ikut ter-bundel dan fiturnya benar-benar jalan di hasil compile:
+opencv-python==4.13.0.92   # Repurpose: Smart Capture face-track
+psutil==7.2.2              # deteksi proses ShoveBot berjalan
+Pillow==11.3.0              # Metadata Cleaner mode gambar, dedup screenshot Shopee
+numpy==2.4.4                # dedup screenshot Shopee (bareng Pillow)
+beautifulsoup4==4.14.3      # fallback parsing HTML scraper Shopee
+
+# Tab Downloader, Repurpose & Clipper — SEMUA SUDAH DIBUNDEL DI DALAM PROJECT:
+#   - ffmpeg.exe + ffprobe.exe  → assets/bin/  (prioritas utama, PATH hanya fallback)
+#   - yt_dlp/                   → package Python di-vendor di root project
+# Baris di bawah hanya fallback kalau folder yt_dlp/ dihapus:
+yt-dlp==2026.3.17          # download video multi-platform (+ auto-caption utk Clipper)
+# Clipper: analisis highlight (ebur128) + burn subtitle full via ffmpeg,
+#          tidak butuh package Python tambahan.

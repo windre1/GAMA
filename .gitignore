@@ -1,0 +1,93 @@
+# =============================================================================
+#  .gitignore GAMA
+#
+#  REPO INI PUBLIK. Apa pun yang lolos ke sini bersifat PERMANEN — GitHub
+#  menyimpan cache, orang lain bisa fork, dan bot pemindai kredensial
+#  mengindeks repo baru dalam hitungan menit. Menghapus commit TIDAK cukup.
+#
+#  Sebelum push pertama, jalankan:  git status --short
+#  dan pastikan tidak ada satu pun berkas dari daftar di bawah yang muncul.
+# =============================================================================
+
+# ── KUNCI BISNIS — PALING FATAL KALAU BOCOR ─────────────────────────────────
+# keygen memegang PRIVATE KEY pembuat license. Kalau ini publik, siapa pun
+# bisa membuat license GAMA tanpa batas dan lisensi jadi tidak ada artinya.
+tools/keygen_gama.py
+tools/keygen_gama.bat
+tools/license_registry.json
+tools/admin_secret.txt
+tools/
+!tools/create_hd_banners.py
+
+# OAuth client secret Google (dipakai youtube_oauth.py)
+assets/youtube_client_secret.json
+*client_secret*.json
+
+# Source API lisensi (berisi logika verifikasi & kemungkinan secret)
+gama-license-api/
+
+# ── DATA RAHASIA — JANGAN PERNAH DI-COMMIT ──────────────────────────────────
+# data/ berisi: Gemini & Groq API key, cookie Shopee, license key,
+# 176 profil Chrome dengan sesi login Google/Shopee yang masih aktif.
+data/
+!data/.gitkeep
+
+# Sesi & kredensial engine
+engines/*/data/
+engines/*/*.session
+engines/*/configs/environment.json
+*.session
+*.session-journal
+*_cookies.json
+cookies*.json
+token*.json
+credentials*.json
+client_secret*.json
+*.pem
+*.key
+.env
+.env.*
+.github_token
+
+# ── HASIL BUILD (besar, bisa dibuat ulang) ──────────────────────────────────
+build/
+dist/
+installer_output/
+*.spec.bak
+__pycache__/
+*.py[cod]
+*.pyo
+
+# ── OUTPUT & FILE KERJA USER ────────────────────────────────────────────────
+downloads/
+output/
+exports/
+temp/
+Upload/
+logs/
+*.log
+*.mp4
+*.mkv
+*.ts
+*.webm
+*.mp3
+*.wav
+
+# Media besar di assets tetap boleh, tapi hasil generate tidak
+static/img/generated/
+assets/generated/
+
+# ── PERKAKAS PIHAK KETIGA YANG DIUNDUH SAAT SETUP ───────────────────────────
+tools/chrome/
+tools/platform-tools/
+yt_dlp/
+node_modules/
+
+# ── LAIN-LAIN ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+~$*
